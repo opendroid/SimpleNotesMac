@@ -137,6 +137,11 @@ class Document: NSDocument {
         // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this property and override -makeWindowControllers instead.
         return "Document"
     }
+    
+    // Register attachment list for drag and drop.
+    override func windowControllerDidLoadNib(windowController: NSWindowController) {
+        self.attachmentList.registerForDraggedTypes([NSURLPboardType])
+    }
     // MARK: -
     // MARK: Storing and managing attachmens.
     // MARK: -
@@ -315,7 +320,6 @@ extension Document : SimpleNoteCVIDelegate {
                 NSWorkspace.sharedWorkspace().openFile(path, withApplication: nil, andDeactivate: true)
             }
         }
-        
     }
 }
 
@@ -340,5 +344,34 @@ extension Document: NSCollectionViewDataSource {
         cvItem.textField?.stringValue = attachment.fileExtension ?? ""
         cvItem.delegate = self // delegate for opening attachment
         return cvItem
+    }
+}
+
+// MARK: -
+// MARK: Handle collection view drag and drop
+// MARK: -
+extension Document: NSCollectionViewDelegate {
+    
+    // validateDrop is called whenever user drops something over a collectionView.
+    func collectionView(collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath?>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
+        // When user drops mouse button copy whatevery they are dropping
+        return NSDragOperation.Copy
+    }
+    
+    func collectionView(collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
+        let pasteboard = draggingInfo.draggingPasteboard() // pasteboard of info user just dropped
+        if pasteboard.types?.contains(NSURLPboardType) == true,
+            let url = NSURL(fromPasteboard:pasteboard) {
+            do {
+                try self.addAttachmentsAtURL(url) // try and add attachment
+                attachmentList.reloadData()
+                return true // all well
+            } catch let error as NSError {
+                self.presentError(error)
+                return false
+            }
+        }
+        
+        return false
     }
 }
