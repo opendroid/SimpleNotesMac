@@ -1,19 +1,55 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10101" systemVersion="15E32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="16A270f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10101"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="SimpleNoteCVI" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="SimpleNoteCVI" customModule="SimpleNotes" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+                <outlet property="imageView" destination="sn9-Ln-DWQ" id="vCV-uP-rgT"/>
+                <outlet property="textField" destination="Dax-wQ-1rQ" id="YLr-Ww-oU7"/>
+                <outlet property="view" destination="XLn-GI-mdg" id="UMk-cE-SFd"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+        <customView id="XLn-GI-mdg">
+            <rect key="frame" x="0.0" y="0.0" width="76" height="102"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sn9-Ln-DWQ">
+                    <rect key="frame" x="4" y="98" width="68" height="0.0"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="wvp-JQ-xVn"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dax-wQ-1rQ">
+                    <rect key="frame" x="-2" y="2" width="80" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="fGb-MB-OaR">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Dax-wQ-1rQ" firstAttribute="leading" secondItem="XLn-GI-mdg" secondAttribute="leading" id="LYF-no-fdm"/>
+                <constraint firstAttribute="trailing" secondItem="sn9-Ln-DWQ" secondAttribute="trailing" constant="4" id="fd0-q4-BcN"/>
+                <constraint firstAttribute="bottom" secondItem="Dax-wQ-1rQ" secondAttribute="bottom" constant="2" id="nUY-WI-dnn"/>
+                <constraint firstItem="sn9-Ln-DWQ" firstAttribute="top" secondItem="XLn-GI-mdg" secondAttribute="top" constant="4" id="rzJ-kA-2EP"/>
+                <constraint firstAttribute="trailing" secondItem="Dax-wQ-1rQ" secondAttribute="trailing" id="sjM-Vc-m2a"/>
+                <constraint firstItem="sn9-Ln-DWQ" firstAttribute="leading" secondItem="XLn-GI-mdg" secondAttribute="leading" constant="4" id="vg0-V1-gzl"/>
+            </constraints>
+            <point key="canvasLocation" x="231" y="204"/>
         </customView>
+        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="jld-2o-Czf">
+            <rect key="frame" x="0.0" y="0.0" width="38" height="17"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="VG1-cR-G6f">
+                <font key="font" metaFont="system"/>
+                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+            </textFieldCell>
+        </textField>
+        <collectionViewItem id="s7k-XU-SQ9" customClass="SimpleNoteCVI" customModule="SimpleNotes" customModuleProvider="target"/>
     </objects>
 </document>

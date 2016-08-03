@@ -14,6 +14,10 @@
 		747058311D27A8CF00DDA0C1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7470582F1D27A8CF00DDA0C1 /* MainMenu.xib */; };
 		7470583C1D27A8CF00DDA0C1 /* SimpleNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7470583B1D27A8CF00DDA0C1 /* SimpleNotesTests.swift */; };
 		747058471D27A8CF00DDA0C1 /* SimpleNotesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747058461D27A8CF00DDA0C1 /* SimpleNotesUITests.swift */; };
+		74C1F6C11D2853E100D9DE98 /* SimpleNoteCVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1F6BF1D2853E100D9DE98 /* SimpleNoteCVI.swift */; };
+		74C1F6C21D2853E100D9DE98 /* SimpleNoteCVI.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C1F6C01D2853E100D9DE98 /* SimpleNoteCVI.xib */; };
+		74C1F6C51D285EF100D9DE98 /* AddAttachmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1F6C31D285EF100D9DE98 /* AddAttachmentVC.swift */; };
+		74C1F6C61D285EF100D9DE98 /* AddAttachmentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C1F6C41D285EF100D9DE98 /* AddAttachmentVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		747058421D27A8CF00DDA0C1 /* SimpleNotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleNotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		747058461D27A8CF00DDA0C1 /* SimpleNotesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNotesUITests.swift; sourceTree = "<group>"; };
 		747058481D27A8CF00DDA0C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74C1F6BF1D2853E100D9DE98 /* SimpleNoteCVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleNoteCVI.swift; sourceTree = "<group>"; };
+		74C1F6C01D2853E100D9DE98 /* SimpleNoteCVI.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleNoteCVI.xib; sourceTree = "<group>"; };
+		74C1F6C31D285EF100D9DE98 /* AddAttachmentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAttachmentVC.swift; sourceTree = "<group>"; };
+		74C1F6C41D285EF100D9DE98 /* AddAttachmentVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAttachmentVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +107,11 @@
 			children = (
 				747058261D27A8CF00DDA0C1 /* AppDelegate.swift */,
 				747058281D27A8CF00DDA0C1 /* Document.swift */,
-				7470582A1D27A8CF00DDA0C1 /* Document.xib */,
 				7470582D1D27A8CF00DDA0C1 /* Assets.xcassets */,
-				7470582F1D27A8CF00DDA0C1 /* MainMenu.xib */,
 				747058321D27A8CF00DDA0C1 /* Info.plist */,
+				74C1F6BF1D2853E100D9DE98 /* SimpleNoteCVI.swift */,
+				74C1F6C31D285EF100D9DE98 /* AddAttachmentVC.swift */,
+				74C1F6C71D285F0000D9DE98 /* XIB */,
 			);
 			path = SimpleNotes;
 			sourceTree = "<group>";
@@ -123,6 +132,17 @@
 				747058481D27A8CF00DDA0C1 /* Info.plist */,
 			);
 			path = SimpleNotesUITests;
+			sourceTree = "<group>";
+		};
+		74C1F6C71D285F0000D9DE98 /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				74C1F6C41D285EF100D9DE98 /* AddAttachmentVC.xib */,
+				74C1F6C01D2853E100D9DE98 /* SimpleNoteCVI.xib */,
+				7470582A1D27A8CF00DDA0C1 /* Document.xib */,
+				7470582F1D27A8CF00DDA0C1 /* MainMenu.xib */,
+			);
+			name = XIB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,8 +249,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74C1F6C21D2853E100D9DE98 /* SimpleNoteCVI.xib in Resources */,
 				7470582E1D27A8CF00DDA0C1 /* Assets.xcassets in Resources */,
 				7470582C1D27A8CF00DDA0C1 /* Document.xib in Resources */,
+				74C1F6C61D285EF100D9DE98 /* AddAttachmentVC.xib in Resources */,
 				747058311D27A8CF00DDA0C1 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,7 +279,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				747058291D27A8CF00DDA0C1 /* Document.swift in Sources */,
+				74C1F6C11D2853E100D9DE98 /* SimpleNoteCVI.swift in Sources */,
 				747058271D27A8CF00DDA0C1 /* AppDelegate.swift in Sources */,
+				74C1F6C51D285EF100D9DE98 /* AddAttachmentVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +511,7 @@
 				7470584D1D27A8CF00DDA0C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7470584E1D27A8CF00DDA0C1 /* Build configuration list for PBXNativeTarget "SimpleNotesTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +520,7 @@
 				747058501D27A8CF00DDA0C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		747058511D27A8CF00DDA0C1 /* Build configuration list for PBXNativeTarget "SimpleNotesUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +529,7 @@
 				747058531D27A8CF00DDA0C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

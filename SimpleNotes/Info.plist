@@ -9,18 +9,31 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>csv</string>
+				<string>atn</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>noted64x64</string>
+				<string>noted22x29</string>
+				<string>noted44x58</string>
+				<string>noted320x320</string>
+			</array>
 			<key>CFBundleTypeName</key>
-			<string>DocumentType</string>
+			<string>A SimpleNote RTF Document</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>????</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.plutoapps.SimpleNotes.note</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>1</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -51,5 +64,45 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>SimpleNote</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.plutoapps.SimpleNotes.note</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>atn</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>SimpleNote</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.plutoapps.SimpleNotes</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>atn</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>
