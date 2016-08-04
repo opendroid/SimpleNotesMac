@@ -23,7 +23,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="addFileAttachmentHandler:" target="-2" id="6vT-3e-2iT"/>
+                        <action selector="addFileAttachmentHandler:" target="-2" id="3gh-16-6ka"/>
                     </connections>
                 </button>
             </subviews>

@@ -5,6 +5,8 @@
 //  Created by Ajay Thakur on 7/2/16.
 //  Copyright © 2016 Ajay Thakur. All rights reserved.
 //
+//  To opt-in iCLoud set these up https://developer.apple.com/library/prerelease/content/documentation/General/Conceptual/ExtensibilityPG/FileProvider.html
+//
 
 import Cocoa
 
@@ -268,11 +270,15 @@ class Document: NSDocument {
 // MARK: -
 extension Document : AddAttachmentDelegate {
     func addAttachment() {
+        
         let panel = NSOpenPanel()
         
         panel.allowsMultipleSelection = false
         panel.canChooseDirectories = false
         panel.canChooseFiles = true
+        panel.canDownloadUbiquitousContents = false
+        panel.canResolveUbiquitousConflicts = true
+        
         
         panel.beginWithCompletionHandler { (result:Int) in
             if result == NSModalResponseOK, let resultUrl = panel.URLs.first {
@@ -288,7 +294,7 @@ extension Document : AddAttachmentDelegate {
                         NSApp.presentError(error)
                     }
                 } // end 'catch'
-            } // end if == result
+            } // end if == result 
         } // end 'panel.beginWithCompletionHandler'
         
     } // end 'addAttachment'
