@@ -48,6 +48,9 @@ extension NSFileWrapper {
 enum NoteDocumentFileNames : String {
     case TextFile = "Text.rtf"
     case AttachmentsDirectory = "Attachments"
+    case QuickLookDirectory = "QuickLook"
+    case QuickLookTextFile = "Preview.rtf"
+    case QuickLookThumbnail = "Thumbnail.png"
 }
 
 enum NotesErrorCodes : Int {
@@ -210,11 +213,66 @@ class Document: NSDocument {
         // error otherwise. That gets propogated it up.
         let textRTFdata = try self.documentText.dataFromRange(NSRange(0..<self.documentText.length),
                                    documentAttributes: [NSDocumentTypeDocumentAttribute : NSRTFTextDocumentType])
+        // If the current document file wrapper already contains a
+        // text file, remove it - we'll replace it with a new one
+        if let oldTextFileWrapper = self.documentFileWrapper
+            .fileWrappers?[NoteDocumentFileNames.TextFile.rawValue] {
+            self.documentFileWrapper.removeFileWrapper(oldTextFileWrapper)
+        }
+        
+        // BEGIN file_wrapper_of_type_quicklook
+        // Create the QuickLook folder
+        let thumbnailImageData = self.iconImageDataWithSize(CGSize(width: 512, height: 512))!
+        let thumbnailWrapper = NSFileWrapper(regularFileWithContents: thumbnailImageData)
+        let quicklookPreview = NSFileWrapper(regularFileWithContents: textRTFdata)
+        let quickLookFolderFileWrapper = NSFileWrapper(directoryWithFileWrappers: [
+                NoteDocumentFileNames.QuickLookTextFile.rawValue: quicklookPreview,
+                NoteDocumentFileNames.QuickLookThumbnail.rawValue: thumbnailWrapper
+                ])
+        quickLookFolderFileWrapper.preferredFilename = NoteDocumentFileNames.QuickLookDirectory.rawValue
+        // Remove the old QuickLook folder if it existed
+        if let oldQuickLookFolder = self.documentFileWrapper
+            .fileWrappers?[NoteDocumentFileNames.QuickLookDirectory.rawValue] {
+            self.documentFileWrapper.removeFileWrapper(oldQuickLookFolder)
+        }
+        // Add the new QuickLook folder
+        self.documentFileWrapper.addFileWrapper(quickLookFolderFileWrapper)
+        // END file_wrapper_of_type_quicklook
         
         // Update the file wrapper with new NSData
         self.documentFileWrapper.addRegularFileWithContents(textRTFdata, preferredFilename: NoteDocumentFileNames.TextFile.rawValue)
         
         return self.documentFileWrapper
+    }
+    
+    // Helper method to create Quicklook icon
+    func iconImageDataWithSize(size: CGSize) -> NSData? {
+        
+        let image = NSImage(size: size)
+        image.lockFocus()
+        let entireImageRect = CGRect(origin: CGPoint.zero, size: size)
+        // Fill the background with white
+        let backgroundRect = NSBezierPath(rect: entireImageRect)
+        NSColor.whiteColor().setFill()
+        backgroundRect.fill()
+        if self.attachedFiles?.count >= 1 {
+            // Render our text, and the first attachment
+            let attachmentImage = self.attachedFiles?[0].thumbnailImage
+            var firstHalf : CGRect = CGRectZero
+            var secondHalf : CGRect = CGRectZero
+            CGRectDivide(entireImageRect, &firstHalf, &secondHalf, entireImageRect.size.height / 2.0, CGRectEdge.MinYEdge)
+            self.documentText.drawInRect(firstHalf)
+            attachmentImage?.drawInRect(secondHalf)
+        } else {
+            // Just render our text
+            self.documentText.drawInRect(entireImageRect)
+        }
+        let bitmapRepresentation = NSBitmapImageRep(focusedViewRect: entireImageRect)
+        image.unlockFocus()
+    
+        // Convert it to a PNG
+        return bitmapRepresentation?.representationUsingType(.NSPNGFileType, properties: [:])
+        
     }
     
     // Read from 'fileWrapper' into the 'documentText'
@@ -381,3 +439,4 @@ extension Document: NSCollectionViewDelegate {
         return false
     }
 }
+
